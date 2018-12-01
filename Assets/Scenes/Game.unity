@@ -513,6 +513,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1219672011}
   - component: {fileID: 1219672012}
+  - component: {fileID: 1219672013}
+  - component: {fileID: 1219672014}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -546,6 +548,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0.08
+  dodgeDistance: 20
+  dodgeCooldown: 1
+--- !u!114 &1219672013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1219672010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7a76fa9a3bfa2440872653e840576b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  damage: 50
+  health: 100
+  vitality: 10
+  strength: 10
+  dexterity: 10
+  intelligence: 10
+--- !u!114 &1219672014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1219672010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02bb764e56bde724cba55453b196d098, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackCooldown: 1
 --- !u!1 &1418096775
 GameObject:
   m_ObjectHideFlags: 0
@@ -641,6 +675,8 @@ GameObject:
   - component: {fileID: 1471380165}
   - component: {fileID: 1471380166}
   - component: {fileID: 1471380167}
+  - component: {fileID: 1471380168}
+  - component: {fileID: 1471380169}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -695,8 +731,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
-  lookRadius: 5
+  lookRadius: 7
   turnSpeed: 100
+--- !u!114 &1471380168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1471380164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ba9650fb7e63f54fb66fcf74a098aef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 40
+  damage: 0
+--- !u!114 &1471380169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1471380164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02bb764e56bde724cba55453b196d098, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackCooldown: 1
 --- !u!1 &2019898619
 GameObject:
   m_ObjectHideFlags: 0

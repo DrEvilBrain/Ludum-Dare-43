@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+[RequireComponent(typeof(CharacterStats))]
 public class EnemyController : MonoBehaviour
 {
     public float speed;
@@ -10,12 +11,16 @@ public class EnemyController : MonoBehaviour
     public float turnSpeed;
     private Transform target;
     private NavMeshAgent agent;
+    private PlayerManager playerManager;
+    private CharacterStats myStats;
 
 	// Use this for initialization
 	void Start()
     {
-        target = PlayerManager.instance.player.transform;
+        playerManager = PlayerManager.instance;
+        target = playerManager.player.transform;
         agent = GetComponent<NavMeshAgent>();
+        myStats = GetComponent<CharacterStats>();
 	}
 	
 	// Update is called once per frame
@@ -41,5 +46,11 @@ public class EnemyController : MonoBehaviour
         Vector3 direction = (target.position - transform.position).normalized;
         Quaternion lookRotation = Quaternion.LookRotation(new Vector2(direction.x, 0));
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * turnSpeed);
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, lookRadius);
     }
 }
