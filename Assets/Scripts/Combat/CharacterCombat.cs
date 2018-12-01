@@ -8,6 +8,7 @@ public class CharacterCombat : MonoBehaviour
     public float attackCooldown;
     private float currentAttackCooldown;
     public float attackRange;
+    public float attackDelay;
     private CharacterStats myStats;
 
 	// Use this for initialization
@@ -26,9 +27,16 @@ public class CharacterCombat : MonoBehaviour
     {
         if(currentAttackCooldown <= 0)
         {
-            Debug.Log("enemy take damage");
-            targetStats.TakeDamage(myStats.damage);
+            Debug.Log(targetStats + " takes " + myStats.damage.GetValue() + " damage");
+            StartCoroutine(DoDamage(targetStats, attackDelay));
             currentAttackCooldown = attackCooldown;
         }
+    }
+
+    IEnumerator DoDamage (CharacterStats stats, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        stats.TakeDamage(myStats.damage.GetValue());
     }
 }

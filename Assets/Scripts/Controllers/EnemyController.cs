@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-[RequireComponent(typeof(CharacterStats))]
+[RequireComponent(typeof(CharacterCombat))]
+[RequireComponent(typeof(EnemyStats))]
 public class EnemyController : MonoBehaviour
 {
     public float speed;
@@ -12,16 +13,18 @@ public class EnemyController : MonoBehaviour
     private Transform target;
     private NavMeshAgent agent;
     private PlayerManager playerManager;
-    private CharacterStats myStats;
+    private CharacterCombat characterCombat;
 
 	// Use this for initialization
 	void Start()
     {
         playerManager = PlayerManager.instance;
         target = playerManager.player.transform;
+        characterCombat = GetComponent<CharacterCombat>();
         agent = GetComponent<NavMeshAgent>();
-        myStats = GetComponent<CharacterStats>();
-	}
+        agent.speed = speed;
+        agent.stoppingDistance = characterCombat.attackRange;
+    }
 	
 	// Update is called once per frame
 	void Update()
@@ -34,7 +37,12 @@ public class EnemyController : MonoBehaviour
             if(distance <= agent.stoppingDistance)
             {
                 // attack player
-
+                CharacterStats targetStats = target.GetComponent<CharacterStats>();
+                if(targetStats != null)
+                {
+                    characterCombat.Attack(targetStats);
+                }
+                
                 // face player
                 FaceTarget();
             }
