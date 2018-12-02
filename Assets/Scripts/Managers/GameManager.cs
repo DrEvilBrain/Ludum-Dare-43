@@ -46,6 +46,12 @@ public class GameManager : MonoBehaviour
 
     public void NextRound()
     {
+        // character "downgrade" menu
+
+
+
+        // start next round's enemy spawns
+
         round++;
         if(round > enemiesPerRound.Length)
         {

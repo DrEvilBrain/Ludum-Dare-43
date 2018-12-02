@@ -35,6 +35,9 @@ public class PlayerController : MonoBehaviour
         float verticalMovement = Input.GetAxis("Vertical") * speed;
         transform.Translate(new Vector3(horizontalMovement, 0, verticalMovement));
 
+        // keep player within camera bounds
+        CameraManager.instance.KeepItemWithinCameraBounds(transform);
+
         // attack
         if (Input.GetButtonDown("Attack"))
         {

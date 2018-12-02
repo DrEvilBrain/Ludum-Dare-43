@@ -8,6 +8,7 @@ public class PlayerStats : CharacterStats
     public Stat strength;
     public Stat dexterity;
     public Stat intelligence;
+    public Item weapon;
 
     private CharacterStats stats;
 
@@ -46,5 +47,10 @@ public class PlayerStats : CharacterStats
         }
 
         HealToMaxHealth();
+    }
+
+    public void ChangeWeapons(Item newWeapon)
+    {
+        weapon = newWeapon;
     }
 }

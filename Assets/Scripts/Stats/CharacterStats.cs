@@ -16,6 +16,7 @@ public class CharacterStats : MonoBehaviour
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
+        damage = Mathf.Clamp(damage, 0, int.MaxValue);
 
         if(currentHealth <= 0)
         {

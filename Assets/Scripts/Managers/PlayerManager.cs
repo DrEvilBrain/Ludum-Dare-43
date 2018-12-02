@@ -17,10 +17,27 @@ public class PlayerManager : MonoBehaviour
     #endregion
 
     public GameObject player;
+    private PlayerStats playerStats;
+
+    private void Start()
+    {
+        playerStats = player.GetComponent<PlayerStats>();
+    }
 
     public void KillPlayer()
     {
         // game over
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void SacrificeStat()
+    {
+        // change character stats
+        
+    }
+
+    public void SacrificeWeapon()
+    {
+        // change character weapon
     }
 }

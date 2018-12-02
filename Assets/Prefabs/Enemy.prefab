@@ -232,7 +232,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
-  lookRadius: 30
+  lookRadius: 50
   turnSpeed: 100
 --- !u!114 &114277669352274604
 MonoBehaviour:
