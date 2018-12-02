@@ -25,8 +25,8 @@ public class CameraManager : MonoBehaviour
     public void KeepItemWithinCameraBounds(Transform transform)
     {
         Vector3 pos = mainCam.WorldToViewportPoint(transform.position);
-        pos.x = Mathf.Clamp(pos.x, 0.01f, 0.99f);
-        pos.y = Mathf.Clamp(pos.y, 0.01f, 0.99f);
+        pos.x = Mathf.Clamp01(pos.x);
+        pos.y = Mathf.Clamp01(pos.y);
         transform.position = mainCam.ViewportToWorldPoint(pos);
     }
 }

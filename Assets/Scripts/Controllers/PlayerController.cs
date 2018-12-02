@@ -31,8 +31,8 @@ public class PlayerController : MonoBehaviour
         float vertical = Input.GetAxisRaw("Vertical");
 
         // movement
-        float horizontalMovement = Input.GetAxis("Horizontal") * speed;
-        float verticalMovement = Input.GetAxis("Vertical") * speed;
+        float horizontalMovement = horizontal * speed;
+        float verticalMovement = vertical * speed;
         transform.Translate(new Vector3(horizontalMovement, 0, verticalMovement));
 
         // keep player within camera bounds
@@ -46,18 +46,19 @@ public class PlayerController : MonoBehaviour
             // if player is not moving
             if(horizontal == 0 || vertical == 0)
             {
-                hitDetect = Physics.BoxCast(transform.position, new Vector3(playerCombat.attackRange / 2, 0, playerCombat.attackRange / 2),
+                hitDetect = Physics.BoxCast(transform.position, new Vector3(playerCombat.attackRange / 2 - 0.5f, 0, playerCombat.attackRange / 2 - 0.5f),
                     previousDirection, out hit, transform.rotation, playerCombat.attackRange);
             }
             else
             {
-                hitDetect = Physics.BoxCast(transform.position, new Vector3(playerCombat.attackRange / 2, 0, playerCombat.attackRange / 2),
+                hitDetect = Physics.BoxCast(transform.position, new Vector3(playerCombat.attackRange / 2 - 0.5f, 0, playerCombat.attackRange / 2 - 0.5f),
                     new Vector3(horizontal, 0, vertical), out hit, transform.rotation, playerCombat.attackRange);
             }
             if (hitDetect)
             {
                 playerCombat.Attack(hit.collider.GetComponent<CharacterStats>());
             }
+
         }
 
         // dodge
@@ -73,6 +74,7 @@ public class PlayerController : MonoBehaviour
         // update previous direction
         if(horizontal != 0 || vertical != 0)
         {
+            Debug.Log("update old direction");
             previousDirection = new Vector3(horizontal, 0, vertical);
         }
     }
