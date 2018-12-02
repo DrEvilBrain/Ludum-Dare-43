@@ -20,6 +20,7 @@ public class PlayerManager : MonoBehaviour
 
     public void KillPlayer()
     {
+        // game over
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

@@ -432,9 +432,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5a3b225728e09b47ae00e5eae4188a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  round: 0
-  enemiesPerRound: 0
-  enemiesStillAlive: 0
+  enemiesPerRound: 0100000002000000030000000400000005000000060000000700000008000000090000000a000000
+  enemiesToSpawn: 0
+  enemiesSpawned: 0
+  enemiesKilled: 0
 --- !u!114 &1065562944
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -453,11 +454,6 @@ MonoBehaviour:
   - {fileID: 944315391}
   - {fileID: 2137113498}
   - {fileID: 1969412484}
-  enemiesPerRound: 0500000002000000030000000400000005000000060000000700000008000000090000000a000000
-  roundNumber: 0
-  maxSpawns: 0
-  currentSpawns: 0
-  currentKilled: 0
 --- !u!1 &1219672010 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1611948436616040, guid: 23ab4ca7a0ed1ee4ca23f36e9eac39fa,

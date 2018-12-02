@@ -7,20 +7,63 @@ public class GameManager : MonoBehaviour
     private PlayerManager playerManager;
     private EnemyManager enemyManager;
 
-    [SerializeField] private int round;
-    [SerializeField] private int enemiesPerRound;
-    [SerializeField] private int enemiesStillAlive;
+    public int round { get; private set; }
+    [SerializeField] private int[] enemiesPerRound;
+    public int enemiesToSpawn;
+    public int enemiesSpawned;
+    public int enemiesKilled;
+    public bool stopSpawning { get; private set; }
 
-	// Use this for initialization
-	void Start ()
+    #region Singleton
+
+    public static GameManager instance;
+
+    private void Awake()
+    {
+        instance = this;
+    }
+
+    #endregion
+
+    // Use this for initialization
+    void Start()
     {
         playerManager = this.GetComponent<PlayerManager>();
         enemyManager = this.GetComponent<EnemyManager>();
+
+        Debug.Log("Start round " + round);
+        round = 0;
+        enemiesToSpawn = enemiesPerRound[round];
+        enemiesSpawned = 0;
+        enemiesKilled = 0;
+        stopSpawning = false;
 	}
-	
-	// Update is called once per frame
-	void Update ()
+
+    public void StopSpawning()
     {
-		
-	}
+        stopSpawning = true;
+    }
+
+    public void NextRound()
+    {
+        round++;
+        if(round > enemiesPerRound.Length)
+        {
+            Win();
+        }
+        else
+        {
+            Debug.Log("Start round " + round);
+            enemiesToSpawn = enemiesPerRound[round];
+            enemiesSpawned = 0;
+            enemiesKilled = 0;
+            stopSpawning = false;
+        } 
+    }
+
+    private void Win()
+    {
+        // victory royale
+        Debug.Log("A winrar is you");
+    }
 }
