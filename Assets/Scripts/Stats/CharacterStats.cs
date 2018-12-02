@@ -5,8 +5,7 @@ using UnityEngine;
 public class CharacterStats : MonoBehaviour
 {
     public int maxHealth;
-    [SerializeField]
-    public int currentHealth { get; private set; }
+    [SerializeField] public int currentHealth { get; private set; }
     public Stat damage;
 
     private void Awake()

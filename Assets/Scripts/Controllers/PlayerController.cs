@@ -43,7 +43,6 @@ public class PlayerController : MonoBehaviour
             // if player is not moving
             if(horizontal == 0 || vertical == 0)
             {
-                Debug.Log("Use previous direction " + previousDirection);
                 hitDetect = Physics.BoxCast(transform.position, new Vector3(playerCombat.attackRange / 2, 0, playerCombat.attackRange / 2),
                     previousDirection, out hit, transform.rotation, playerCombat.attackRange);
             }
