@@ -9,5 +9,7 @@ public class EnemyStats : CharacterStats
         base.Die();
         Destroy(this.gameObject);
 
+        // send to EnemyManager that an enemy died
+        EnemyManager.instance.EnemyDied();
     }
 }

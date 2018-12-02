@@ -453,7 +453,11 @@ MonoBehaviour:
   - {fileID: 944315391}
   - {fileID: 2137113498}
   - {fileID: 1969412484}
-  maxSpawns: 5
+  enemiesPerRound: 0500000002000000030000000400000005000000060000000700000008000000090000000a000000
+  roundNumber: 0
+  maxSpawns: 0
+  currentSpawns: 0
+  currentKilled: 0
 --- !u!1 &1219672010 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1611948436616040, guid: 23ab4ca7a0ed1ee4ca23f36e9eac39fa,
