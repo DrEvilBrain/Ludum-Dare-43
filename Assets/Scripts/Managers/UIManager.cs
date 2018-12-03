@@ -9,11 +9,11 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI waveNumber;
 
     public RectTransform sacraficeMenu;
-    public RectTransform statSacraficeMenu;
-    public RectTransform weaponSacraficeMenu;
+    public RectTransform statSacrificeMenu;
+    public RectTransform weaponSacrificeMenu;
 
-    public Button statSacraficeButton;
-    public Button weaponSacraficeButton;
+    public Button statSacrificeButton;
+    public Button weaponSacrificeButton;
 
     public Button vitality;
     public Button strength;
@@ -23,9 +23,11 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI strengthNumber;
     public TextMeshProUGUI dexterityNumber;
     public TextMeshProUGUI wisdomNumber;
+    public TextMeshProUGUI statDescription;
 
     public Button weapon1;
     public Button weapon2;
+    public TextMeshProUGUI weaponDescription;
 
     private string waveText;
     public bool inMenu { get; private set; }
@@ -48,27 +50,11 @@ public class UIManager : MonoBehaviour
 
         // disable sacrafice menus until round ends
         sacraficeMenu.gameObject.SetActive(false);
-        statSacraficeMenu.gameObject.SetActive(false);
-        weaponSacraficeMenu.gameObject.SetActive(false);
+        statSacrificeMenu.gameObject.SetActive(false);
+        weaponSacrificeMenu.gameObject.SetActive(false);
         inMenu = false;
-
-        // stat sacrafice menu buttons
-        vitality.onClick.AddListener(SacraficeVitality);
-        strength.onClick.AddListener(SacraficeStrength);
-        dexterity.onClick.AddListener(SacraficeDexterity);
-        wisdom.onClick.AddListener(SacraficeWisdom);
-
-        // weapon sacrafice menu buttons
-        weapon1.onClick.AddListener(ChangeToWeapon1);
-        weapon2.onClick.AddListener(ChangeToWeapon2);
     }
 	
-	// Update is called once per frame
-	void Update()
-    {
-		
-	}
-
     public void UpdateWaveNumber(int roundNumber)
     {
         waveNumber.text = waveText + roundNumber;
@@ -78,82 +64,53 @@ public class UIManager : MonoBehaviour
     {
         sacraficeMenu.gameObject.SetActive(true);
         inMenu = true;
-        SacraficeMenu();
     }
 
-    private void SacraficeMenu()
-    {
-        // stat sacrafice
-        statSacraficeButton.onClick.AddListener(delegate { StatSacraficeMenu(); });
-
-        // weapon sacrafice
-        weaponSacraficeButton.onClick.AddListener(delegate { WeaponSacraficeMenu(); });
-    }
-
-    public void CloseSacraficeMenu()
+    private void CloseSacraficeMenu()
     {
         sacraficeMenu.gameObject.SetActive(false);
     }
 
-    private void OpenStatSacraficeMenu()
-    {
-        sacraficeMenu.gameObject.SetActive(true);
-        StatSacraficeMenu();
-    }
-
-    private void StatSacraficeMenu()
+    public void StatSacraficeMenu()
     {
         // close sacrafice menu
         CloseSacraficeMenu();
 
         // open stat sacrafice menu
-        statSacraficeMenu.gameObject.SetActive(true);
+        statSacrificeMenu.gameObject.SetActive(true);
     }
 
-    private void SacraficeVitality()
+    public void UpdateStatDescription(string description)
     {
-        PlayerManager.instance.SacrificeVitality();
+        statDescription.text = description;
     }
 
-    private void SacraficeStrength()
-    {
-        PlayerManager.instance.SacrificeStrength();
-    }
-
-    private void SacraficeDexterity()
-    {
-        PlayerManager.instance.SacrificeDexterity();
-    }
-
-    private void SacraficeWisdom()
-    {
-        PlayerManager.instance.SacrificeWisdom();
-    }
-
-    private void WeaponSacraficeMenu()
+    public void WeaponSacraficeMenu()
     {
         // close sacrafice menu
         CloseSacraficeMenu();
 
         // open weapon menu
-        weaponSacraficeMenu.gameObject.SetActive(true);
+        weaponSacrificeMenu.gameObject.SetActive(true);
     }
 
-    private void ChangeToWeapon1()
+    public void UpdateWeaponDescription(int weaponNumber)
     {
-
-    }
-
-    private void ChangeToWeapon2()
-    {
-
+        if(weaponNumber == 1)
+        {
+            weaponDescription.text = GameManager.instance.weapon1.description;
+        }
+        else if(weaponNumber == 2)
+        {
+            weaponDescription.text = GameManager.instance.weapon2.description;
+        }
     }
 
     public void CloseAllMenus()
     {
         sacraficeMenu.gameObject.SetActive(false);
-        statSacraficeMenu.gameObject.SetActive(false);
-        weaponSacraficeMenu.gameObject.SetActive(false);
+        statSacrificeMenu.gameObject.SetActive(false);
+        weaponSacrificeMenu.gameObject.SetActive(false);
         inMenu = false;
     }
 }

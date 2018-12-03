@@ -128,7 +128,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0.08
-  dodgeDistance: 2
+  dodgeDistance: 3
   dodgeCooldown: 1
 --- !u!114 &114654681956857736
 MonoBehaviour:
@@ -157,7 +157,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   damage:
-    baseValue: 5
+    baseValue: 10
   vitality:
     baseValue: 10
   strength:
@@ -167,13 +167,20 @@ MonoBehaviour:
   wisdom:
     baseValue: 10
   strengthDamage:
-    baseValue: 5
+    baseValue: 10
   dexterityDamage:
-    baseValue: 5
+    baseValue: 10
   wisdomDamage:
-    baseValue: 5
+    baseValue: 10
   weapon:
     baseDamage: 5
+    baseAttackSpeed: 0
+    baseAttackRange: 0
+    strengthItem: 1
+    dexterityItem: 0
+    wisdomItem: 0
+    name: 
+    description: 
   amountToChangeBy: 1
 --- !u!135 &135765601072763924
 SphereCollider:

@@ -8,7 +8,11 @@ public class Item
     public int baseDamage;
     public int baseAttackSpeed;
     public int baseAttackRange;
-    private ItemType itemType;
+    public bool strengthItem;
+    public bool dexterityItem;
+    public bool wisdomItem;
+    public string name;
+    public string description;
 
     public int GetDamage()
     {
@@ -25,9 +29,19 @@ public class Item
         return baseAttackRange;
     }
 
-    public ItemType GetItemType()
+    public bool IsStrengthItem()
     {
-        return itemType;
+        return strengthItem;
+    }
+
+    public bool IsDexterityItem()
+    {
+        return dexterityItem;
+    }
+
+    public bool IsWisdomItem()
+    {
+        return wisdomItem;
     }
 
     public void ChangeDamage(int numberToChangeTo)

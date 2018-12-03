@@ -22,9 +22,10 @@ public class PlayerStats : CharacterStats
     {
         stats = this.GetComponent<CharacterStats>();
         stats.maxHealth = vitality.GetValue() * 10;
-        strengthDamage.ChangeValueTo(strength.GetValue() / 2);
-        dexterityDamage.ChangeValueTo(dexterity.GetValue() / 2);
-        wisdomDamage.ChangeValueTo(wisdom.GetValue() / 2);
+        strengthDamage.ChangeValueTo(strength.GetValue());
+        dexterityDamage.ChangeValueTo(dexterity.GetValue());
+        wisdomDamage.ChangeValueTo(wisdom.GetValue());
+        UpdateDamage();
 	}
 
     public override void Die()
@@ -45,15 +46,15 @@ public class PlayerStats : CharacterStats
             }
             else if (statToChange == strength)
             {
-                strengthDamage.ChangeValueTo(strength.GetValue() / 2);
+                strengthDamage.ChangeValueTo(strength.GetValue());
             }
             else if (statToChange == dexterity)
             {
-                dexterityDamage.ChangeValueTo(dexterity.GetValue() / 2);
+                dexterityDamage.ChangeValueTo(dexterity.GetValue());
             }
             else if (statToChange == wisdom)
             {
-                wisdomDamage.ChangeValueTo(wisdom.GetValue() / 2);
+                wisdomDamage.ChangeValueTo(wisdom.GetValue());
             }
 
             UpdateDamage();
@@ -85,15 +86,15 @@ public class PlayerStats : CharacterStats
 
     private void UpdateDamage()
     {
-        if(weapon.GetItemType().IsStrengthItem())
+        if(weapon.IsStrengthItem())
         {
             damage.ChangeValueTo(strengthDamage.GetValue() + weapon.GetDamage());
         }
-        else if (weapon.GetItemType().IsDexterityItem())
+        else if (weapon.IsDexterityItem())
         {
             damage.ChangeValueTo(dexterityDamage.GetValue() + weapon.GetDamage());
         }
-        else if (weapon.GetItemType().IsWisdomItem())
+        else if (weapon.IsWisdomItem())
         {
             damage.ChangeValueTo(wisdomDamage.GetValue() + weapon.GetDamage());
         }

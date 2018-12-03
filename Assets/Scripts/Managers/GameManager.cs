@@ -4,16 +4,15 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    private PlayerManager playerManager;
-    private EnemyManager enemyManager;
-    private UIManager uiManager;
-
     public int round { get; private set; }
     public int enemiesMorePerRound;
     public int enemiesToSpawn;
     public int enemiesSpawned;
     public int enemiesKilled;
     public bool stopSpawning { get; private set; }
+
+    public Item weapon1;
+    public Item weapon2;
 
     #region Singleton
 
@@ -29,17 +28,8 @@ public class GameManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        playerManager = this.GetComponent<PlayerManager>();
-        enemyManager = this.GetComponent<EnemyManager>();
-        uiManager = this.GetComponent<UIManager>();
-
-        Debug.Log("Start round " + round);
         round = 0;
-        enemiesToSpawn = 5;
-        enemiesSpawned = 0;
-        enemiesKilled = 0;
-        stopSpawning = false;
-        uiManager.UpdateWaveNumber(round + 1);
+        StartSpawnWave();
 	}
 
     public void StopSpawning()
@@ -51,17 +41,20 @@ public class GameManager : MonoBehaviour
     {
         round++;
 
+        // generate weapons
+        weapon1 = ItemManager.instance.GenerateWeapon(weapon1);
+        weapon2 = ItemManager.instance.GenerateWeapon(weapon2);
+
         // character sacrafice menu
-        uiManager.OpenSacraficeMenu();
+        UIManager.instance.OpenSacraficeMenu();
     }
 
     public void StartSpawnWave()
     {
-        Debug.Log("Start round " + round);
         enemiesToSpawn += enemiesMorePerRound;
         enemiesSpawned = 0;
         enemiesKilled = 0;
         stopSpawning = false;
-        uiManager.UpdateWaveNumber(round + 1);
+        UIManager.instance.UpdateWaveNumber(round + 1);
     }
 }

@@ -62,9 +62,17 @@ public class PlayerManager : MonoBehaviour
         UIManager.instance.wisdomNumber.text = playerStats.wisdom.GetValue().ToString();
     }
 
-    public void SacrificeWeapon()
+    public void SacrificeWeapon(int weaponNumber)
     {
         // change character weapon
+        if(weaponNumber == 1)
+        {
+            playerStats.ChangeWeapons(GameManager.instance.weapon1);
+        }
+        else if(weaponNumber == 2)
+        {
+            playerStats.ChangeWeapons(GameManager.instance.weapon2);
+        }
     }
 
     public void AfterSacrafice()
