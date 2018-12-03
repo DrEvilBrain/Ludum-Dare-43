@@ -15,6 +15,6 @@ public class Stat
 
     public void ChangeValue(int numberToChangeBy)
     {
-        baseValue += numberToChangeBy;
+        baseValue = baseValue - numberToChangeBy;
     }
 }

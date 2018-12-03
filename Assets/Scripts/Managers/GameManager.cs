@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 {
     private PlayerManager playerManager;
     private EnemyManager enemyManager;
+    private UIManager uiManager;
 
     public int round { get; private set; }
     [SerializeField] private int[] enemiesPerRound;
@@ -30,6 +31,7 @@ public class GameManager : MonoBehaviour
     {
         playerManager = this.GetComponent<PlayerManager>();
         enemyManager = this.GetComponent<EnemyManager>();
+        uiManager = this.GetComponent<UIManager>();
 
         Debug.Log("Start round " + round);
         round = 0;
@@ -37,6 +39,7 @@ public class GameManager : MonoBehaviour
         enemiesSpawned = 0;
         enemiesKilled = 0;
         stopSpawning = false;
+        uiManager.UpdateWaveNumber(round + 1);
 	}
 
     public void StopSpawning()
@@ -46,14 +49,15 @@ public class GameManager : MonoBehaviour
 
     public void NextRound()
     {
-        // character "downgrade" menu
-
-
-
-        // start next round's enemy spawns
-
         round++;
-        if(round > enemiesPerRound.Length)
+
+        // character sacrafice menu
+        uiManager.OpenSacraficeMenu();
+    }
+
+    public void StartSpawnWave()
+    {
+        if (round > enemiesPerRound.Length)
         {
             Win();
         }
@@ -64,7 +68,8 @@ public class GameManager : MonoBehaviour
             enemiesSpawned = 0;
             enemiesKilled = 0;
             stopSpawning = false;
-        } 
+            uiManager.UpdateWaveNumber(round + 1);
+        }
     }
 
     private void Win()

@@ -26,6 +26,12 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // cancel all input if in menu
+        if(UIManager.instance.inMenu)
+        {
+            return;
+        }
+
         currentDodgeCooldown -= Time.deltaTime;
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
@@ -74,7 +80,6 @@ public class PlayerController : MonoBehaviour
         // update previous direction
         if(horizontal != 0 || vertical != 0)
         {
-            Debug.Log("update old direction");
             previousDirection = new Vector3(horizontal, 0, vertical);
         }
     }

@@ -164,8 +164,11 @@ MonoBehaviour:
     baseValue: 10
   dexterity:
     baseValue: 10
-  intelligence:
+  wisdom:
     baseValue: 10
+  weapon:
+    baseDamage: 0
+  amountToChangeBy: 1
 --- !u!135 &135765601072763924
 SphereCollider:
   m_ObjectHideFlags: 1

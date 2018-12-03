@@ -7,8 +7,10 @@ public class PlayerStats : CharacterStats
     public Stat vitality;
     public Stat strength;
     public Stat dexterity;
-    public Stat intelligence;
+    public Stat wisdom;
     public Item weapon;
+
+    public int amountToChangeBy;
 
     private CharacterStats stats;
 
@@ -25,7 +27,7 @@ public class PlayerStats : CharacterStats
         PlayerManager.instance.KillPlayer();
     }
 
-    public void ChangeStats(Stat statToChange, int amountToChangeBy)
+    public void ChangeStats(Stat statToChange)
     {
         statToChange.ChangeValue(amountToChangeBy);
 
@@ -41,7 +43,7 @@ public class PlayerStats : CharacterStats
         {
             // change bow damage
         }
-        else if(statToChange == intelligence)
+        else if(statToChange == wisdom)
         {
             // change staff damage
         }

@@ -30,14 +30,47 @@ public class PlayerManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
-    public void SacrificeStat()
+    public void SacrificeVitality()
     {
-        // change character stats
-        
+        playerStats.ChangeStats(playerStats.vitality);
+
+        AfterSacrafice();
+    }
+
+    public void SacrificeStrength()
+    {
+        playerStats.ChangeStats(playerStats.strength);
+
+        AfterSacrafice();
+    }
+
+    public void SacrificeDexterity()
+    {
+        playerStats.ChangeStats(playerStats.dexterity);
+
+        AfterSacrafice();
+    }
+
+    public void SacrificeWisdom()
+    {
+        playerStats.ChangeStats(playerStats.wisdom);
+
+        AfterSacrafice();
     }
 
     public void SacrificeWeapon()
     {
         // change character weapon
+
+        AfterSacrafice();
+    }
+
+    private void AfterSacrafice()
+    {
+        // close sacrafice menus
+        UIManager.instance.CloseAllMenus();
+
+        // begin spawn wave
+        GameManager.instance.StartSpawnWave();
     }
 }
