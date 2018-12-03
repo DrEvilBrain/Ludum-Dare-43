@@ -28,7 +28,6 @@ public class EnemyManager : MonoBehaviour
     {
         if (GameManager.instance.enemiesSpawned >= GameManager.instance.enemiesToSpawn)
         {
-            Debug.Log("Stop Spawning");
             GameManager.instance.StopSpawning();
             return;
         }

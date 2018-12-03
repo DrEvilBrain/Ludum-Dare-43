@@ -84,6 +84,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    // show player hitbox
     void OnDrawGizmos()
     {
         Gizmos.color = Color.red;

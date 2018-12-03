@@ -10,6 +10,8 @@ public class EnemyController : MonoBehaviour
     public float speed;
     public float lookRadius;
     public float turnSpeed;
+    public float attackDelay;
+    private float attackedCooldown;
     private Transform target;
     private NavMeshAgent agent;
     private PlayerManager playerManager;
@@ -24,6 +26,7 @@ public class EnemyController : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         agent.speed = speed;
         agent.stoppingDistance = characterCombat.attackRange;
+        attackedCooldown = attackDelay;
     }
 	
 	// Update is called once per frame
@@ -36,9 +39,12 @@ public class EnemyController : MonoBehaviour
 
             if(distance <= agent.stoppingDistance)
             {
+                // decrease attackCooldown
+                attackedCooldown -= Time.deltaTime;
+
                 // attack player
                 CharacterStats targetStats = target.GetComponent<CharacterStats>();
-                if(targetStats != null)
+                if(targetStats != null && attackedCooldown <= 0)
                 {
                     characterCombat.Attack(targetStats);
                 }
@@ -46,6 +52,11 @@ public class EnemyController : MonoBehaviour
                 // face player
                 FaceTarget();
             }
+        }
+        else
+        {
+            // reset cooldown if not in range
+            attackedCooldown = attackDelay;
         }
 	}
 
