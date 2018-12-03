@@ -166,8 +166,14 @@ MonoBehaviour:
     baseValue: 10
   wisdom:
     baseValue: 10
+  strengthDamage:
+    baseValue: 5
+  dexterityDamage:
+    baseValue: 5
+  wisdomDamage:
+    baseValue: 5
   weapon:
-    baseDamage: 0
+    baseDamage: 5
   amountToChangeBy: 1
 --- !u!135 &135765601072763924
 SphereCollider:

@@ -5,10 +5,10 @@ using UnityEngine;
 [System.Serializable]
 public class Item
 {
-    [SerializeField]
-    private int baseDamage;
-    private int baseAttackSpeed;
-    private int baseAttackRange;
+    public int baseDamage;
+    public int baseAttackSpeed;
+    public int baseAttackRange;
+    private ItemType itemType;
 
     public int GetDamage()
     {
@@ -23,6 +23,11 @@ public class Item
     public int GetAttackRange()
     {
         return baseAttackRange;
+    }
+
+    public ItemType GetItemType()
+    {
+        return itemType;
     }
 
     public void ChangeDamage(int numberToChangeTo)

@@ -13,6 +13,11 @@ public class Stat
         return baseValue;
     }
 
+    public void ChangeValueTo(int numberToChangeTo)
+    {
+        baseValue = numberToChangeTo;
+    }
+
     public void ChangeValue(int numberToChangeBy)
     {
         baseValue = baseValue - numberToChangeBy;

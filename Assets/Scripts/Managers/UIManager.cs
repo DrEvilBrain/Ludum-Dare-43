@@ -7,6 +7,7 @@ using TMPro;
 public class UIManager : MonoBehaviour
 {
     public TextMeshProUGUI waveNumber;
+
     public RectTransform sacraficeMenu;
     public RectTransform statSacraficeMenu;
     public RectTransform weaponSacraficeMenu;
@@ -18,6 +19,10 @@ public class UIManager : MonoBehaviour
     public Button strength;
     public Button dexterity;
     public Button wisdom;
+    public TextMeshProUGUI vitalityNumber;
+    public TextMeshProUGUI strengthNumber;
+    public TextMeshProUGUI dexterityNumber;
+    public TextMeshProUGUI wisdomNumber;
 
     public Button weapon1;
     public Button weapon2;

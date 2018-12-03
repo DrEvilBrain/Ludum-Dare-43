@@ -34,38 +34,40 @@ public class PlayerManager : MonoBehaviour
     {
         playerStats.ChangeStats(playerStats.vitality);
 
-        AfterSacrafice();
+        // update UI
+        UIManager.instance.vitalityNumber.text = playerStats.vitality.GetValue().ToString();
     }
 
     public void SacrificeStrength()
     {
         playerStats.ChangeStats(playerStats.strength);
 
-        AfterSacrafice();
+        // update UI
+        UIManager.instance.strengthNumber.text = playerStats.strength.GetValue().ToString();
     }
 
     public void SacrificeDexterity()
     {
         playerStats.ChangeStats(playerStats.dexterity);
 
-        AfterSacrafice();
+        // update UI
+        UIManager.instance.dexterityNumber.text = playerStats.dexterity.GetValue().ToString();
     }
 
     public void SacrificeWisdom()
     {
         playerStats.ChangeStats(playerStats.wisdom);
 
-        AfterSacrafice();
+        // update UI
+        UIManager.instance.wisdomNumber.text = playerStats.wisdom.GetValue().ToString();
     }
 
     public void SacrificeWeapon()
     {
         // change character weapon
-
-        AfterSacrafice();
     }
 
-    private void AfterSacrafice()
+    public void AfterSacrafice()
     {
         // close sacrafice menus
         UIManager.instance.CloseAllMenus();
