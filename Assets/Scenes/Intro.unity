@@ -331,6 +331,69 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 592926616}
   m_CullTransparentMesh: 0
+--- !u!1001 &661735831
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4858189570256096, guid: 174beea5d025e2649a87001f47797bde, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4858189570256096, guid: 174beea5d025e2649a87001f47797bde, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4858189570256096, guid: 174beea5d025e2649a87001f47797bde, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4858189570256096, guid: 174beea5d025e2649a87001f47797bde, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4858189570256096, guid: 174beea5d025e2649a87001f47797bde, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4858189570256096, guid: 174beea5d025e2649a87001f47797bde, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4858189570256096, guid: 174beea5d025e2649a87001f47797bde, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4858189570256096, guid: 174beea5d025e2649a87001f47797bde, type: 2}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 223956766211470662, guid: 174beea5d025e2649a87001f47797bde,
+        type: 2}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1360100954}
+    - target: {fileID: 223956766211470662, guid: 174beea5d025e2649a87001f47797bde,
+        type: 2}
+      propertyPath: m_PlaneDistance
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 223956766211470662, guid: 174beea5d025e2649a87001f47797bde,
+        type: 2}
+      propertyPath: m_PixelPerfect
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 174beea5d025e2649a87001f47797bde, type: 2}
+  m_IsPrefabAsset: 0
+--- !u!114 &661735832 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114389482749186536, guid: 174beea5d025e2649a87001f47797bde,
+    type: 2}
+  m_PrefabInternal: {fileID: 661735831}
+  m_Script: {fileID: 11500000, guid: 306bdc49d24416648aea5e3085fbdee3, type: 3}
 --- !u!1 &744523995
 GameObject:
   m_ObjectHideFlags: 0
@@ -342,7 +405,6 @@ GameObject:
   - component: {fileID: 744523999}
   - component: {fileID: 744523998}
   - component: {fileID: 744523997}
-  - component: {fileID: 744524000}
   m_Layer: 5
   m_Name: Play Button
   m_TagString: Untagged
@@ -408,8 +470,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 744524000}
-        m_MethodName: StartGame
+      - m_Target: {fileID: 661735832}
+        m_MethodName: FadeToLevel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -455,17 +517,6 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 744523995}
   m_CullTransparentMesh: 0
---- !u!114 &744524000
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 744523995}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 306bdc49d24416648aea5e3085fbdee3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &961603282
 GameObject:
   m_ObjectHideFlags: 0
@@ -889,11 +940,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: afe67dcbd559fff4ebaa85a42a37fc15, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0

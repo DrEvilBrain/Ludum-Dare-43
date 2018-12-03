@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -37,7 +36,7 @@ public class PlayerManager : MonoBehaviour
     public void KillPlayer()
     {
         // game over
-        SceneManager.LoadScene("Game Over");
+        GameManager.instance.EndGame();
     }
 
     public void SacrificeVitality()
