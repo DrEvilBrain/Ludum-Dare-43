@@ -24,6 +24,16 @@ public class PlayerManager : MonoBehaviour
         playerStats = player.GetComponent<PlayerStats>();
     }
 
+    public float GetMaxHealth()
+    {
+        return playerStats.maxHealth;
+    }
+
+    public float GetCurrentHealth()
+    {
+        return playerStats.currentHealth;
+    }
+
     public void KillPlayer()
     {
         // game over

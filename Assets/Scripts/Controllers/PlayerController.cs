@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     public float dodgeCooldown;
     private float currentDodgeCooldown;
     private CharacterCombat playerCombat;
+    private PlayerStats playerStats;
     private RaycastHit hit;
     private bool hitDetect;
     private Vector3 previousDirection;
@@ -20,6 +21,7 @@ public class PlayerController : MonoBehaviour
     {
         currentDodgeCooldown = dodgeCooldown;
         playerCombat = this.GetComponent<CharacterCombat>();
+        playerStats = this.GetComponent<PlayerStats>();
         previousDirection = new Vector3(1, 0, 0);
     }
 
@@ -47,24 +49,65 @@ public class PlayerController : MonoBehaviour
         // attack
         if (Input.GetButtonDown("Attack"))
         {
-            // sword
+            // strength weapons
+            if(playerStats.weapon.strengthItem)
+            {
+                // if player is not moving
+                if (horizontal == 0 || vertical == 0)
+                {
+                    hitDetect = Physics.BoxCast(transform.position, new Vector3(playerCombat.attackRange / 2 - 0.5f, 0, playerCombat.attackRange / 2 - 0.5f),
+                        previousDirection, out hit, transform.rotation, playerCombat.attackRange);
+                }
+                else
+                {
+                    hitDetect = Physics.BoxCast(transform.position, new Vector3(playerCombat.attackRange / 2 - 0.5f, 0, playerCombat.attackRange / 2 - 0.5f),
+                        new Vector3(horizontal, 0, vertical), out hit, transform.rotation, playerCombat.attackRange);
+                }
+                if (hitDetect)
+                {
+                    playerCombat.Attack(hit.collider.GetComponent<CharacterStats>());
+                }
+            }
 
-            // if player is not moving
-            if(horizontal == 0 || vertical == 0)
+            // dexterity weapons
+            if (playerStats.weapon.dexterityItem)
             {
-                hitDetect = Physics.BoxCast(transform.position, new Vector3(playerCombat.attackRange / 2 - 0.5f, 0, playerCombat.attackRange / 2 - 0.5f),
-                    previousDirection, out hit, transform.rotation, playerCombat.attackRange);
-            }
-            else
-            {
-                hitDetect = Physics.BoxCast(transform.position, new Vector3(playerCombat.attackRange / 2 - 0.5f, 0, playerCombat.attackRange / 2 - 0.5f),
-                    new Vector3(horizontal, 0, vertical), out hit, transform.rotation, playerCombat.attackRange);
-            }
-            if (hitDetect)
-            {
-                playerCombat.Attack(hit.collider.GetComponent<CharacterStats>());
+                // if player is not moving
+                if (horizontal == 0 || vertical == 0)
+                {
+                    hitDetect = Physics.BoxCast(transform.position, new Vector3(playerCombat.attackRange / 2 - 0.5f, 0, playerCombat.attackRange / 2 - 0.5f),
+                        previousDirection, out hit, transform.rotation, playerCombat.attackRange);
+                }
+                else
+                {
+                    hitDetect = Physics.BoxCast(transform.position, new Vector3(playerCombat.attackRange / 2 - 0.5f, 0, playerCombat.attackRange / 2 - 0.5f),
+                        new Vector3(horizontal, 0, vertical), out hit, transform.rotation, playerCombat.attackRange);
+                }
+                if (hitDetect)
+                {
+                    playerCombat.Attack(hit.collider.GetComponent<CharacterStats>());
+                }
             }
 
+            // wisdom weapons
+            if (playerStats.weapon.wisdomItem)
+            {
+                // if player is not moving
+                if (horizontal == 0 || vertical == 0)
+                {
+                    hitDetect = Physics.BoxCast(transform.position, new Vector3(playerCombat.attackRange / 2 - 0.5f, 0, playerCombat.attackRange / 2 - 0.5f),
+                        previousDirection, out hit, transform.rotation, playerCombat.attackRange);
+                }
+                else
+                {
+                    hitDetect = Physics.BoxCast(transform.position, new Vector3(playerCombat.attackRange / 2 - 0.5f, 0, playerCombat.attackRange / 2 - 0.5f),
+                        new Vector3(horizontal, 0, vertical), out hit, transform.rotation, playerCombat.attackRange);
+                }
+                if (hitDetect)
+                {
+                    playerCombat.Attack(hit.collider.GetComponent<CharacterStats>());
+                }
+            }
         }
 
         // dodge

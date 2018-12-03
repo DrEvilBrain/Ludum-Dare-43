@@ -29,6 +29,8 @@ public class UIManager : MonoBehaviour
     public Button weapon2;
     public TextMeshProUGUI weaponDescription;
 
+    public SpriteRenderer playerHealthBar;
+
     private string waveText;
     public bool inMenu { get; private set; }
 
@@ -43,8 +45,7 @@ public class UIManager : MonoBehaviour
 
     #endregion
 
-    // Use this for initialization
-    void Start()
+    private void Start()
     {
         waveText = waveNumber.text;
 
@@ -54,7 +55,14 @@ public class UIManager : MonoBehaviour
         weaponSacrificeMenu.gameObject.SetActive(false);
         inMenu = false;
     }
-	
+
+    private void Update()
+    {
+        Vector3 healthBarScale = playerHealthBar.transform.localScale;
+        healthBarScale.x = PlayerManager.instance.GetCurrentHealth() / PlayerManager.instance.GetMaxHealth();
+        playerHealthBar.transform.localScale = healthBarScale;
+    }
+
     public void UpdateWaveNumber(int roundNumber)
     {
         waveNumber.text = waveText + roundNumber;
