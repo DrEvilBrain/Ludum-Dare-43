@@ -128,7 +128,7 @@ public class PlayerController : MonoBehaviour
     }
 
     // show player hitbox
-    void OnDrawGizmos()
+    void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
 

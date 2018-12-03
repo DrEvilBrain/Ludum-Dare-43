@@ -37,7 +37,7 @@ public class PlayerManager : MonoBehaviour
     public void KillPlayer()
     {
         // game over
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene("Game Over");
     }
 
     public void SacrificeVitality()
