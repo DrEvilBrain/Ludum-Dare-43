@@ -16,6 +16,11 @@ public class PlayerController : MonoBehaviour
     private bool hitDetect;
     private Vector3 previousDirection;
 
+    public Animator animator;
+    public SpriteRenderer sprite;
+    public Animator swingAnimator;
+    public SpriteRenderer swingSprite;
+
     // Use this for initialization
     void Start()
     {
@@ -38,6 +43,36 @@ public class PlayerController : MonoBehaviour
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
 
+        // animation
+
+        // reset triggers
+        animator.ResetTrigger("WalkHorizontal");
+        animator.ResetTrigger("WalkUp");
+        animator.ResetTrigger("WalkDown");
+        swingAnimator.ResetTrigger("Swing");
+        // right
+        if (horizontal == 1)
+        {
+            animator.SetTrigger("WalkHorizontal");
+            sprite.flipX = false ;
+        }
+        // left
+        else if(horizontal == -1)
+        {
+            animator.SetTrigger("WalkHorizontal");
+            sprite.flipX = true;
+        }
+        // up
+        else if(vertical == 1)
+        {
+            animator.SetTrigger("WalkUp");
+        }
+        // down
+        else if(vertical == -1)
+        {
+            animator.SetTrigger("WalkDown");
+        }
+
         // movement
         float horizontalMovement = horizontal * speed;
         float verticalMovement = vertical * speed;
@@ -49,6 +84,7 @@ public class PlayerController : MonoBehaviour
         // attack
         if (Input.GetButtonDown("Attack"))
         {
+
             // strength weapons
             if(playerStats.weapon.strengthItem)
             {
@@ -57,11 +93,13 @@ public class PlayerController : MonoBehaviour
                 {
                     hitDetect = Physics.BoxCast(transform.position, new Vector3(playerCombat.attackRange / 2 - 0.5f, 0, playerCombat.attackRange / 2 - 0.5f),
                         previousDirection, out hit, transform.rotation, playerCombat.attackRange);
+                    SwingAnimation(previousDirection.x, previousDirection.z);
                 }
                 else
                 {
                     hitDetect = Physics.BoxCast(transform.position, new Vector3(playerCombat.attackRange / 2 - 0.5f, 0, playerCombat.attackRange / 2 - 0.5f),
                         new Vector3(horizontal, 0, vertical), out hit, transform.rotation, playerCombat.attackRange);
+                    SwingAnimation(horizontal, vertical);
                 }
                 if (hitDetect)
                 {
@@ -77,11 +115,13 @@ public class PlayerController : MonoBehaviour
                 {
                     hitDetect = Physics.BoxCast(transform.position, new Vector3(playerCombat.attackRange / 2 - 0.5f, 0, playerCombat.attackRange / 2 - 0.5f),
                         previousDirection, out hit, transform.rotation, playerCombat.attackRange);
+                    SwingAnimation(previousDirection.x, previousDirection.z);
                 }
                 else
                 {
                     hitDetect = Physics.BoxCast(transform.position, new Vector3(playerCombat.attackRange / 2 - 0.5f, 0, playerCombat.attackRange / 2 - 0.5f),
                         new Vector3(horizontal, 0, vertical), out hit, transform.rotation, playerCombat.attackRange);
+                    SwingAnimation(horizontal, vertical);
                 }
                 if (hitDetect)
                 {
@@ -97,11 +137,13 @@ public class PlayerController : MonoBehaviour
                 {
                     hitDetect = Physics.BoxCast(transform.position, new Vector3(playerCombat.attackRange / 2 - 0.5f, 0, playerCombat.attackRange / 2 - 0.5f),
                         previousDirection, out hit, transform.rotation, playerCombat.attackRange);
+                    SwingAnimation(previousDirection.x, previousDirection.z);
                 }
                 else
                 {
                     hitDetect = Physics.BoxCast(transform.position, new Vector3(playerCombat.attackRange / 2 - 0.5f, 0, playerCombat.attackRange / 2 - 0.5f),
                         new Vector3(horizontal, 0, vertical), out hit, transform.rotation, playerCombat.attackRange);
+                    SwingAnimation(horizontal, vertical);
                 }
                 if (hitDetect)
                 {
@@ -124,6 +166,65 @@ public class PlayerController : MonoBehaviour
         if(horizontal != 0 || vertical != 0)
         {
             previousDirection = new Vector3(horizontal, 0, vertical);
+        }
+    }
+
+    void SwingAnimation(float horizontal, float vertical)
+    {
+        // swing animation
+        if (playerCombat.IsAttackPossible())
+        {
+            // reset
+            swingSprite.transform.localPosition = new Vector3(1, 0, 0);
+            swingSprite.flipX = false;
+            swingSprite.flipY = false;
+
+            // up right
+            if (horizontal == 1 && vertical == 1)
+            {
+                swingSprite.transform.localPosition = new Vector3(1, 0, 1);
+            }
+            // up left
+            else if (horizontal == -1 && vertical == 1)
+            {
+                swingSprite.transform.localPosition = new Vector3(-1, 0, 1);
+            }
+            // down right
+            else if (horizontal == 1 && vertical == -1)
+            {
+                swingSprite.transform.localPosition = new Vector3(1, 0, -1);
+            }
+            // down left
+            else if (horizontal == -1 && vertical == -1)
+            {
+                swingSprite.transform.localPosition = new Vector3(-1, 0, -1);
+            }
+            // right
+            else if (horizontal == 1)
+            {
+                swingSprite.transform.localPosition = new Vector3(1, 0, 0);
+                swingSprite.flipX = false;
+            }
+            // left
+            else if (horizontal == -1)
+            {
+                swingSprite.transform.localPosition = new Vector3(-1, 0, 0);
+                swingSprite.flipX = true;
+            }
+            // up
+            else if (vertical == 1)
+            {
+                swingSprite.transform.localPosition = new Vector3(0, 0, 1);
+                swingSprite.transform.Rotate(Vector3.left);
+            }
+            // down
+            else if (vertical == -1)
+            {
+                swingSprite.transform.localPosition = new Vector3(0, 0, -1);
+                swingSprite.transform.Rotate(Vector3.right);
+            }
+
+            swingAnimator.SetTrigger("Swing");
         }
     }
 

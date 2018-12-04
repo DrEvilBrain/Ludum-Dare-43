@@ -33,6 +33,18 @@ public class CharacterCombat : MonoBehaviour
         }
     }
 
+    public bool IsAttackPossible()
+    {
+        if(currentAttackCooldown <= 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
     IEnumerator DoDamage (CharacterStats stats, float delay)
     {
         yield return new WaitForSeconds(delay);

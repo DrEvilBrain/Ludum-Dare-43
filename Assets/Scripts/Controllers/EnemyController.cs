@@ -20,6 +20,9 @@ public class EnemyController : MonoBehaviour
 
     public SpriteRenderer healthBar;
 
+    public Animator animator;
+    public SpriteRenderer sprite;
+
 	// Use this for initialization
 	void Start()
     {
@@ -40,6 +43,35 @@ public class EnemyController : MonoBehaviour
         Vector3 healthBarScale = healthBar.transform.localScale;
         healthBarScale.x = enemyStats.GetCurrentHealth() / enemyStats.GetMaxHealth();
         healthBar.transform.localScale = healthBarScale;
+
+        // animation
+
+        // reset triggers
+        animator.ResetTrigger("WalkHorizontal");
+        animator.ResetTrigger("WalkUp");
+        animator.ResetTrigger("WalkDown");
+        // right
+        if (agent.nextPosition.x > 0)
+        {
+            animator.SetTrigger("WalkHorizontal");
+            sprite.flipX = false;
+        }
+        // left
+        else if (agent.nextPosition.x < 0)
+        {
+            animator.SetTrigger("WalkHorizontal");
+            sprite.flipX = true;
+        }
+        // up
+        else if (agent.nextPosition.z > 0)
+        {
+            animator.SetTrigger("WalkUp");
+        }
+        // down
+        else if (agent.nextPosition.z < 0)
+        {
+            animator.SetTrigger("WalkDown");
+        }
 
         float distance = Vector3.Distance(target.position, transform.position);
         if(distance <= lookRadius)
