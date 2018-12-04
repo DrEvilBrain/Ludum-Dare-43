@@ -16,6 +16,9 @@ public class EnemyController : MonoBehaviour
     private NavMeshAgent agent;
     private PlayerManager playerManager;
     private CharacterCombat characterCombat;
+    private EnemyStats enemyStats;
+
+    public SpriteRenderer healthBar;
 
 	// Use this for initialization
 	void Start()
@@ -23,6 +26,7 @@ public class EnemyController : MonoBehaviour
         playerManager = PlayerManager.instance;
         target = playerManager.player.transform;
         characterCombat = GetComponent<CharacterCombat>();
+        enemyStats = GetComponent<EnemyStats>();
         agent = GetComponent<NavMeshAgent>();
         agent.speed = speed;
         agent.stoppingDistance = characterCombat.attackRange;
@@ -32,6 +36,11 @@ public class EnemyController : MonoBehaviour
 	// Update is called once per frame
 	void Update()
     {
+        // update HP
+        Vector3 healthBarScale = healthBar.transform.localScale;
+        healthBarScale.x = enemyStats.GetCurrentHealth() / enemyStats.GetMaxHealth();
+        healthBar.transform.localScale = healthBarScale;
+
         float distance = Vector3.Distance(target.position, transform.position);
         if(distance <= lookRadius)
         {
@@ -48,9 +57,6 @@ public class EnemyController : MonoBehaviour
                 {
                     characterCombat.Attack(targetStats);
                 }
-                
-                // face player
-                FaceTarget();
             }
         }
         else
@@ -59,13 +65,6 @@ public class EnemyController : MonoBehaviour
             attackedCooldown = attackDelay;
         }
 	}
-
-    void FaceTarget()
-    {
-        Vector3 direction = (target.position - transform.position).normalized;
-        Quaternion lookRotation = Quaternion.LookRotation(new Vector2(direction.x, 0));
-        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * turnSpeed);
-    }
 
     private void OnDrawGizmosSelected()
     {
