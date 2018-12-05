@@ -50,6 +50,7 @@ public class PlayerController : MonoBehaviour
         animator.ResetTrigger("WalkUp");
         animator.ResetTrigger("WalkDown");
         swingAnimator.ResetTrigger("Swing");
+        swingAnimator.ResetTrigger("SwingUp");
         // right
         if (horizontal == 1)
         {
@@ -179,52 +180,34 @@ public class PlayerController : MonoBehaviour
             swingSprite.flipX = false;
             swingSprite.flipY = false;
 
-            // up right
-            if (horizontal == 1 && vertical == 1)
-            {
-                swingSprite.transform.localPosition = new Vector3(1, 0, 1);
-            }
-            // up left
-            else if (horizontal == -1 && vertical == 1)
-            {
-                swingSprite.transform.localPosition = new Vector3(-1, 0, 1);
-            }
-            // down right
-            else if (horizontal == 1 && vertical == -1)
-            {
-                swingSprite.transform.localPosition = new Vector3(1, 0, -1);
-            }
-            // down left
-            else if (horizontal == -1 && vertical == -1)
-            {
-                swingSprite.transform.localPosition = new Vector3(-1, 0, -1);
-            }
             // right
-            else if (horizontal == 1)
+            if (horizontal == 1)
             {
                 swingSprite.transform.localPosition = new Vector3(1, 0, 0);
                 swingSprite.flipX = false;
+                swingAnimator.SetTrigger("Swing");
             }
             // left
             else if (horizontal == -1)
             {
                 swingSprite.transform.localPosition = new Vector3(-1, 0, 0);
                 swingSprite.flipX = true;
+                swingAnimator.SetTrigger("Swing");
             }
             // up
             else if (vertical == 1)
             {
-                swingSprite.transform.localPosition = new Vector3(0, 0, 1);
-                swingSprite.transform.Rotate(Vector3.left);
+                swingSprite.flipY = false;
+                swingSprite.transform.localPosition = new Vector3(0, 1, 0);
+                swingAnimator.SetTrigger("SwingUp");
             }
             // down
             else if (vertical == -1)
             {
-                swingSprite.transform.localPosition = new Vector3(0, 0, -1);
-                swingSprite.transform.Rotate(Vector3.right);
+                swingSprite.flipY = true;
+                swingSprite.transform.localPosition = new Vector3(0, -1, 0);
+                swingAnimator.SetTrigger("SwingUp");
             }
-
-            swingAnimator.SetTrigger("Swing");
         }
     }
 

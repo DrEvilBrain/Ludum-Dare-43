@@ -3238,16 +3238,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 212888505268701220, guid: 23ab4ca7a0ed1ee4ca23f36e9eac39fa,
-        type: 2}
-      propertyPath: m_FlipX
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 212888505268701220, guid: 23ab4ca7a0ed1ee4ca23f36e9eac39fa,
-        type: 2}
-      propertyPath: m_FlipY
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 23ab4ca7a0ed1ee4ca23f36e9eac39fa, type: 2}
   m_IsPrefabAsset: 0
@@ -5263,7 +5253,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_TargetDisplay: 0
 --- !u!224 &1963065818
 RectTransform:
